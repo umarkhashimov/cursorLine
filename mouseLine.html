@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Line</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+
+<body>
+
+    <div class="settings">
+        <button class="menu" onclick="ToggleSettings()">Toggle</button>
+        <div class="colors">
+            <button class="colors-toggle" onclick="TogglePropertySettings('all-colors')" property="all-colors">Colors</button>
+            <!-- <input type="color"> -->
+            <div class="all-colors" id="float">
+                <h2 class="settings-headings">Line Colors</h2>
+                <!-- <p>Color Main : <input type="color" for="--color-main"></p> -->
+                <p id="--color-1">Color 1 : <input type="color" id="pickers" for="--color-1"
+                        oninput="ChangeProperty(this)"><span>#ffff</span></p>
+                <p id="--color-2">Color 2 : <input type="color" id="pickers" for="--color-2"
+                        oninput="ChangeProperty(this)"><span>#ffff</span></p>
+                <p id="--color-3">Color 3 : <input type="color" id="pickers" for="--color-3"
+                        oninput="ChangeProperty(this)"><span>#ffff</span></p>
+            </div>
+            <div class="shadows-div">
+                <div class="main shadows">
+                    <button class="shadow-toggle" onclick="TogglePropertySettings('all-shadows')"
+                        property="all-shadows">Sha</button>
+                    <!-- <input type="color"> -->
+                    <div class="all-shadows" id="float">
+                        <h2 class="settings-headings">Line Shadows</h2>
+                        <!-- <p>Color Main : <input type="color" for="--color-main"></p> -->
+                        <p id="--shadow-color-1">Shadow 1 : <input type="color" id="pickers"
+                                for="--shadow-color-1" oninput="ChangeProperty(this)"><span>#ffff</span></p>
+                        <p id="--shadow-color-2">Shadow 2 : <input type="color" id="pickers"
+                                for="--shadow-color-2" oninput="ChangeProperty(this)"><span>#ffff</span></p>
+                        <p id="--shadow-color-3">Shadow 3 : <input type="color" id="pickers"
+                                for="--shadow-color-3" oninput="ChangeProperty(this)"><span>#ffff</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,240 @@
+:root{
+    /* --color-main : red; */
+    --color-1 : #ff0000;
+    --color-2 : #ffa600;
+    --color-3 : #ffff00;
+    --shadow-color-1 : #ff0000;
+    --shadow-color-2 : #ffa600;
+    --shadow-color-3 : #ffff00
+}
+
+body {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+*{
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+div[number] {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-1);
+    border-radius: 50%;
+    animation: disapear 1s 0.4s;
+    box-shadow: 0 0 10px var(--shadow-color-1);
+}
+
+@keyframes disapear {
+
+    30% {
+        background-color: var(--color-2);
+        box-shadow: 0 0 15px var(--shadow-color-2);
+    }
+    60% {
+        background-color: var(--color-3);
+        box-shadow: 0 0 25px var(--shadow-color-3);
+    }
+    100% {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+div.settings{
+    border-radius: 50% !important;
+    z-index: 1;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    width: 50px;
+    height: 50px;
+    background-color: black;
+    /* opacity: 0.5; */
+}
+
+div.settings > div * {
+    pointer-events: none;
+}
+
+div.settings[expanded] > div * {
+    pointer-events:unset;
+}
+
+div.settings > button.menu{
+    border-radius: 50% !important;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* colors */
+
+div.settings > div.colors{
+    border-radius: 50% !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale(0.5);
+    width: 100%;
+    height: 100%;
+    transition: 0.2s 0.22s;
+    z-index: -1;
+    opacity: 0;
+}
+
+div.settings > div.colors > div.shadows-div{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+div.settings[expanded] > div.colors{
+    left: 110%;
+    transition: 0.2s 0s;
+    transform: scale(1);
+    opacity: 1;
+}
+
+
+div.settings  button.colors-toggle,
+div.settings  button.shadow-toggle{
+    border-radius: 50% !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: 0.1s;
+    border: 0;
+    z-index: 100;
+}
+
+div.settings  button.colors-toggle:hover,
+div.settings  button.shadow-toggle:hover{
+    cursor: pointer;
+    background-color: blue;
+}
+
+div.settings div.all-colors{
+    position: fixed;
+    bottom: 70px;
+    left: 0px;
+    width: 250px;
+    height: 200px;
+    border-radius: 5%;
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: -1;
+    transition: 0.1s;   
+    overflow: hidden;
+    color: white;
+    transform: translateY(20px);
+    opacity: 0;
+    pointer-events: none;
+    padding: 0 10px;
+}
+
+div.settings > div.colors > div.all-colors[expanded]{
+    transform: translateY(0px);
+    opacity: 1;
+    z-index: -500;
+    pointer-events: all;
+}
+
+
+div.settings  h2.settings-headings{
+    margin: 5px 0;
+} 
+
+input::-moz-selection{
+    background-color: black !important;
+}
+
+#pickers{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    border-radius: 100% !important;
+    padding: none !important;
+}
+
+#pickers::-webkit-color-swatch{
+    border-radius: 100%;
+    border: 1px solid gray;
+}
+
+div.settings > div p{
+    width: 250px;
+    font-size: 20px;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 5px 0;
+    color: white;
+}
+
+/* shadows */
+
+div.settings  div.all-shadows{
+    position: fixed;
+    bottom: 70px;
+    left: 0px;
+    width: 250px;
+    height: 200px;
+    border-radius: 5%;
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: -1;
+    transition: 0.1s;   
+    overflow: hidden;
+    color: white;
+    transform: translateY(20px);
+    opacity: 0;
+    pointer-events: none;
+    padding: 0 10px;
+}
+
+
+div.settings  div.all-shadows[expanded]{
+    transform: translateY(0px);
+    opacity: 1;
+    z-index: -500;
+    pointer-events: all;
+}
+
+div.settings div.shadows{
+    border-radius: 50% !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: scale(0.5);
+    transition: 0.2s 0s;
+    z-index: -10;
+    opacity: 0;
+}
+
+div.settings[expanded] div.shadows{
+    left: 110%;
+    transform: scale(1);
+    transition: 0.2s 0.15s;
+    opacity: 1;
+}
+
+div.settings[expanded] > div.colors{
+    left: 110%;
+}
