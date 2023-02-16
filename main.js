@@ -1,4 +1,3 @@
-
 function Circles(id, pTop, pLeft) {
     let created = document.createElement('div')
     created.setAttribute('number', id)
