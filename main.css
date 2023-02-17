@@ -4,7 +4,8 @@
     --color-3: #ffff00;
     --shadow-color-1: #ff0000;
     --shadow-color-2: #ffa600;
-    --shadow-color-3: #ffff00
+    --shadow-color-3: #ffff00;
+    --circles-size: 50px
 }
 
 body {
@@ -21,8 +22,8 @@ body {
 
 div[number] {
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: var(--circles-size);
+    height: var(--circles-size);
     background-color: var(--color-1);
     border-radius: 50%;
     animation: disapear 1s 0.4s;
@@ -87,17 +88,18 @@ div.settings[expanded]>div * {
 }
 
 div.settings div.all-shadows,
-div.settings div.all-colors {
+div.settings div.all-colors,
+div.settings div.all-sizes {
     position: fixed;
-    bottom: 70px;
-    left: 0px;
+    bottom: 60px;
+    left: 5px;
     width: 250px;
     height: 210px;
     border-radius: 5%;
     background-color: rgba(0, 0, 0, 0.9);
     border: 1px solid rgba(255, 255, 255, 0.2);
     z-index: -1;
-    transition: 0.1s;
+    transition: 0.1s 0s;
     overflow: hidden;
     color: white;
     transform: translateY(20px);
@@ -106,7 +108,24 @@ div.settings div.all-colors {
     padding: 5px 10px;
 }
 
+div.settings div.all-sizes{
+    left: 60px;
+    bottom: 5px;
+    transform: translateY(0) translateX(-20px);
+}
+
+div.settings div.all-shadows[expanded],
+div.settings div.all-colors[expanded],
+div.settings div.all-sizes[expanded] {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+    z-index: -500;
+    pointer-events: all;
+    transition: 0.1s 0.1s;
+}
+
 div.settings div.shadows,
+div.settings div.sizes,
 div.settings div.colors {
     border-radius: 50% !important;
     position: absolute;
@@ -123,16 +142,24 @@ div.settings div.shadows {
     transition: 0.2s 0s;
 }
 
+div.settings div.sizes {
+    transition: 0.2s 0.22s;
+}
+
 div.settings div.colors {
     transition: 0.2s 0.22s;
 }
 
-
+div.settings[expanded] div.sizes,
 div.settings[expanded] div.shadows,
 div.settings[expanded] div.colors {
-    left: 55%;
     opacity: 1;
     transform: scale(1);
+}
+
+div.settings[expanded] div.sizes{
+    top: -55%;
+    transition: 0.2s 0.15s;
 }
 
 div.settings[expanded] div.shadows {
@@ -147,7 +174,8 @@ div.settings[expanded] div.colors {
 
 div.settings button.menu,
 div.settings button.colors-toggle,
-div.settings button.shadow-toggle {
+div.settings button.shadow-toggle,
+div.settings button.size-toggle {
     border-radius: 50% !important;
     position: absolute;
     top: 0;
@@ -171,12 +199,21 @@ div.settings button.shadow-toggle:hover {
     opacity: 1;
 }
 
-div.settings div.all-shadows[expanded],
-div.settings div.all-colors[expanded] {
-    transform: translateY(0px);
-    opacity: 1;
-    z-index: -500;
-    pointer-events: all;
+input[type='range'] {
+    margin-top: 10px;
+    appearance: none;
+    -webkit-appearance: none !important;
+    background:gray;
+    height:8px;
+    border-radius: 10px;
+}
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    box-shadow: 0 0 1px 3px #fff, 0 0 1px 4px #000, 0 0 6px #fff ;
+    background: white;
+    height:13px;
+    width:13px;
+    border-radius: 50%;
 }
 
 input::-moz-selection {
@@ -202,7 +239,7 @@ input::-moz-selection {
 
 div.settings>div p {
     width: 250px;
-    font-size: 20px;
+    font-size: 22px;
     margin: 0px;
     display: flex;
     align-items: center;

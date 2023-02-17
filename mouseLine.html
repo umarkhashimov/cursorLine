@@ -13,6 +13,18 @@
 
     <div class="settings">
         <button class="menu" onclick="ToggleSettings()">Toggle</button>
+        <div class="sizes">
+            <div class="main sizes">
+                <button class="size-toggle" onclick="TogglePropertySettings('all-sizes')"
+                    property="all-sizes">Sizes</button>
+                <div class="all-sizes" id="float">
+                    <h2 class="settings-headings">Line Sizes</h2>
+                    <p id="--circles-size" style="margin-top: 10px;">Circles Size : <span></span>px</p>
+                    <input type="range" id="" min="10" max="100" step="10" inPixels for="--circles-size"
+                        oninput="ChangeProperty(this)" list="CirclesSize">
+                </div>
+            </div>
+        </div>
         <div class="colors">
             <button class="colors-toggle" onclick="TogglePropertySettings('all-colors')"
                 property="all-colors">Colors</button>

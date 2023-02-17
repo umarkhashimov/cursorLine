@@ -1,12 +1,12 @@
-function Circles(id, pTop, pLeft) {
+function Circles(id, pTop, pLeft, size) {
     let created = document.createElement('div')
     created.setAttribute('number', id)
-    created.style.top = pTop - 25 + 'px'
-    created.style.left = pLeft - 25 + 'px'
+    created.style.top = pTop - (size / 2) + 'px'
+    created.style.left = pLeft - (size / 2)  + 'px'
 
     let animate = function () {
         created.animate([
-            { top: `${pTop - 25}px`, left: `${pLeft - 25}px` },
+            { top: `${pTop - (size / 2)}px`, left: `${pLeft - (size / 2)}px` },
             { top: `${pTop}px`, left: `${pLeft}px` }
         ], { duration: 1000, iterations: 1, delay: 350 })
     };
@@ -29,8 +29,15 @@ function Circles(id, pTop, pLeft) {
 let amount = 0
 document.onmousemove = (event) => {
     amount++
-    let d = new Circles(amount, event.clientY, event.clientX)
+    let d = new Circles(amount, event.clientY, event.clientX, getCircleSize())
     d.draw()
+}
+
+// ####
+
+function getCircleSize(){
+    let size = document.styleSheets[0].cssRules[0].style.getPropertyValue('--circles-size')
+    return size.substring(0, size.length - 2)
 }
 
 // ####
@@ -64,7 +71,7 @@ function TogglePropertySettings(element) {
 
 function ChangeProperty(inp) {
     let propName = inp.getAttribute('for')
-    document.documentElement.style.setProperty(`${propName}`, inp.value);
+    document.styleSheets[0].cssRules[0].style.setProperty(`${propName}`, inp.hasAttribute('inPixels') ? inp.value + 'px' : inp.value);
     ChangePropertyText(propName, inp.value)
     setToLocatStorage(propName, inp.value)
 }
@@ -91,9 +98,9 @@ function ChangePropertyText(propName, value) {
 
 
 function setInputValue(forInp, value) {
-    let inp = document.querySelector(`input[for=${forInp}]#pickers`)
+    let inp = document.querySelector(`input[for=${forInp}]`)
     if (inp) {
-        inp.value = value == 'transparent' ? '#000000' : value.trim()
+        inp.value = value == 'transparent' ? value = '#000000' : value.trim()
     }
 }
 
@@ -101,6 +108,7 @@ function setInputValue(forInp, value) {
 
 function setCssRootProperties(name, value) {
     let root = document.styleSheets[0].cssRules[0].style;
+    if (name.endsWith("size")){value += 'px'}
     root.setProperty(name, value.trim());
 }
 
