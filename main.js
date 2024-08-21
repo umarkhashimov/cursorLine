@@ -33,6 +33,14 @@ document.onmousemove = (event) => {
     d.draw()
 }
 
+document.ontouchmove = (event) => {
+    amount++
+    var x = event.touches[0].clientX;
+    var y = event.touches[0].clientY;
+    let d = new Circles(amount, y, x, getCircleSize())
+    d.draw()
+  }
+
 // ####
 
 function getCircleSize(){
